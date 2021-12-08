@@ -1,3 +1,4 @@
+
 export type Especialidade = {
     id: string,
     nome: string
@@ -21,3 +22,11 @@ export type Turma = {
     nome: string,
     modulo: string
 }
+
+export type Estudante = {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+};
+
