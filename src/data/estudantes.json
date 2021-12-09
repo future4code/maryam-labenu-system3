@@ -1,14 +1,16 @@
 [
   {
-    "id": "2eaea984-2d11-4a95-8ca3-e4da372db8eb",
-    "name": "Maria",
-    "email": "maria@gmail.com",
-    "password": "$2a$12$86CNRiZaih/DG93cdcVA/OCcISYia/h05AJ1YEV93mTO5bzxq7eJm"
+    "id": "23sq1d4f-4d2s-5de3-a13s-g5fd3h56h75a",
+    "name": "João Rocha",
+    "email": "joaorolabenu@gmail.com",
+    "data_nasc": "2005/10/20",
+    "turma_id": "2s4gf320-a21d-i4ds-2s9a-q981i3d01qa2"
   },
   {
-    "id": "5f43cfb5-f15d-4baf-a631-f92b32be3859",
-    "name": "Ana",
-    "email": "ana@gmail.com",
-    "password": "$2a$12$wJ1D0EtT0m5CEzwSW4akYOVYoaC.kA8VOSutMMij1vrNhxfDVZxQq"
+    "id": "0aw1f4c5-23s4-g43d-4s326yv57g476f",
+    "name": "Rafaela Valadares",
+    "email": "rafalnb@gmail.com",
+    "data_nasc": "2007/01/10",
+    "turma_id": "1oa983fd- 2sr3-ao30-3d4e-34d62sd4e3o"
   }
 ]

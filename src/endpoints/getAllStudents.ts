@@ -19,6 +19,7 @@ const toUser = (input: any): Estudante => {
     id: input.id,
     name: input.name,
     email: input.email,
-    password: input.password,
+    data_nasc: input.data_nasc,
+    turma_id: input.turma_id,
   };
 };

@@ -12,10 +12,25 @@ const createTables = () =>
     .raw(
       `
       CREATE TABLE IF NOT EXISTS maryam_estudantes (
-         id VARCHAR(255) PRIMARY KEY,
-         name VARCHAR(255) UNIQUE NOT NULL,
-         email VARCHAR(255) UNIQUE NOT NULL,
-         password VARCHAR(255) NOT NULL
+        id VARCHAR(255) PRIMARY KEY,
+        name VARCHAR(255),
+        email VARCHAR(255) UNIQUE NOT NULL,
+        data_nasc DATE NOT NULL,
+        turma_id VARCHAR(255) NOT NULL,
+        FOREIGN KEY (turma_id) REFERENCES maryam_turma(id)
+      );
+
+      CREATE TABLE IF NOT EXISTS maryam_Hobbies (
+        id VARCHAR(255) PRIMARY KEY,
+        name VARCHAR(255) NOT NULL UNIQUE
+      );
+
+      CREATE TABLE IF NOT EXISTS maryam_estudantes_Hobbies (
+        id VARCHAR(255) PRIMARY KEY,
+        student_id VARCHAR(255) NOT NULL,
+        hobbie_id VARCHAR(255) NOT NULL,
+        FOREIGN KEY (student_id) REFERENCES maryam_estudantes(id),
+        FOREIGN KEY (hobbie_id) REFERENCES maryam_Hobbie(id)
       );
 
       CREATE TABLE IF NOT EXISTS maryam_turma (
@@ -64,6 +79,14 @@ const insertTurmas = () =>
     })
     .catch(printError);
 
+ const insertHobbies = () =>
+   connection("maryam_Hobbies")
+     .insert(docentes)
+     .then(() => {
+       console.log("Hobbies criadas");
+     })
+     .catch(printError);
+
 const closeConnection = () => {
   connection.destroy();
 };
@@ -71,4 +94,5 @@ const closeConnection = () => {
 createTables().then(insertEstudantes).finally(closeConnection);
 createTables().then(insertTurmas).finally(closeConnection);
 createTables().then(insertDocentes).finally(closeConnection);
+createTables().then(insertHobbies).finally(closeConnection);
 
