@@ -2,6 +2,8 @@ import { connection } from "./connection";
 import estudantes from "./estudantes.json";
 import turmas from "./turmas.json"
 import docentes from "./docentes.json"
+import especialidades from "./especialidades.json"
+import docenteEspecialidade from "./docenteEspecialidade.json"
 
 const printError = (error: any) => {
   console.log(error.sqlMessage || error.message);
@@ -33,6 +35,18 @@ const createTables = () =>
         FOREIGN KEY (turma_id) REFERENCES maryam_turma(id)
       );
 
+      CREATE TABLE IF NOT EXISTS maryam_especialidade (
+        id VARCHAR(255) PRIMARY KEY,
+        name VARCHAR(255) UNIQUE NOT NULL
+      );
+      
+      CREATE TABLE IF NOT EXISTS maryam_docenteEspecialidade (
+        id VARCHAR(255) PRIMARY KEY,
+        docente_id VARCHAR(255) NOT NULL,
+        especialidade_id VARCHAR(255) NOT NULL,
+        FOREIGN KEY (docente_id) REFERENCES maryam_docentes(id),
+        FOREIGN KEY (especialidade_id) REFERENCES maryam_especialidade(id)
+      );
 `
     )
     .then(() => {
@@ -64,6 +78,22 @@ const insertTurmas = () =>
     })
     .catch(printError);
 
+    const insertEspecialidade = () =>
+    connection("maryam_especialidade")
+      .insert(especialidades)
+      .then(() => {
+        console.log("Especialidades criadas");
+      })
+      .catch(printError);
+
+      const insertDocente_Especialidade = () =>
+      connection("maryam_docenteEspecialidade")
+        .insert(docenteEspecialidade)
+        .then(() => {
+          console.log("Docente_Especialidade criadas");
+        })
+        .catch(printError);
+
 const closeConnection = () => {
   connection.destroy();
 };
@@ -71,4 +101,6 @@ const closeConnection = () => {
 createTables().then(insertEstudantes).finally(closeConnection);
 createTables().then(insertTurmas).finally(closeConnection);
 createTables().then(insertDocentes).finally(closeConnection);
+createTables().then(insertEspecialidade).finally(closeConnection);
+createTables().then(insertDocente_Especialidade).finally(closeConnection);
 

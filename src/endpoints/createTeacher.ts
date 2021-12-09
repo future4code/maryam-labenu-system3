@@ -57,14 +57,10 @@ export const createTeacher = async(
         
     } catch (error: any) {
         if(res.statusCode === 200){
-            res.status(500).send("Ocorreu um erro inesperado!")
+            res.status(500).send("Um erro inesperado ocorreu")
         }else{
             res.send(error.message)
         }
     }
    
 }
-
-function currentData(currentData: any) {
-    throw new Error("Function not implemented.");
-    }
