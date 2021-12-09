@@ -3,16 +3,15 @@ import { connection } from "../data/connection";
 
 export const createStudent = async (req: Request, res: Response) => {
   try {
-    const { name, email, password } = req.body;
+    const id = Date.now().toString();
 
-    if (!name || !email || !password) {
-      res.statusCode = 422;
-      throw new Error(" 'name', 'email' e 'password' são obrigatórios");
-    }
+    let { name, email, data_nasc, turma_id } = req.body;
 
-    if (password.length < 6) {
+    if (!id || !name || !email || !data_nasc || !turma_id) {
       res.statusCode = 422;
-      throw new Error("A senha deve conter no mínimo seis caracteres");
+      throw new Error(
+        " 'id', 'name', 'email', 'data_nasc' e 'turma_id' são obrigatórios"
+      );
     }
 
     if (!email.includes("@")) {
@@ -20,18 +19,56 @@ export const createStudent = async (req: Request, res: Response) => {
       throw new Error("Formato de email inválido");
     }
 
+    const formatDefaultDate = (data: any) => {
+      let arrayDate = data && data.split("/");
+      let [year, month, day] = [
+        arrayDate && arrayDate[2],
+        arrayDate && arrayDate[1],
+        arrayDate && arrayDate[0],
+      ];
+      let usefullDate = `${year}-${month}-${day}`;
+      return usefullDate;
+    };
+    formatDefaultDate(data_nasc);
+
+    const formatDate = () => {
+      const todayDate = new Date().toISOString();
+      let nwd = todayDate && todayDate.split("-");
+      let [year, month, newdt] = [
+        nwd && nwd[0],
+        nwd && nwd[1],
+        nwd && nwd[2].split("T"),
+      ];
+      let [day] = [newdt && newdt[0], newdt && newdt[1].split(".")];
+      let currentData: string = `${year}-${month}-${day}`;
+      return currentData;
+    };
+
+    const date = formatDate();
+    data_nasc = formatDefaultDate(data_nasc);
+
+    if (formatDefaultDate(data_nasc).valueOf() < date.valueOf()) {
+      res.statusCode = 422;
+      throw new Error(`A deadline must be later than the current date.`);
+    }
+
     await connection("maryam_estudantes").insert({
       id: Date.now().toString(),
       name,
       email,
-      password,
+      data_nasc,
+      turma_id,
     });
-    res.send("Estudante criado");
-  } catch (error) {
-    console.log(error);
-    if (res.statusCode === 200)
-      res.status(500).send("Um erro inesperado ocorreu =/");
-    else res.send(error);
+    res.status(200).send("Estudante criado");
+  } catch (error: any) {
+    if (res.statusCode === 200) {
+      res.status(500).send("Ocorreu um erro inesperado!");
+    } else {
+      res.send(error.message);
+    }
   }
 };
 
+function currentData(currentData: any) {
+  throw new Error("Function not implemented.");
+}
