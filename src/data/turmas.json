@@ -8,5 +8,15 @@
         "id": "1oa983fd- 2sr3-ao30-3d4e-34d62sd4e3o",
         "name": "LoveLance",
         "modulo": "1"
+    },
+     {
+      "id": "A",
+      "name": "Fundamental",
+      "modulo": "5"
+    },
+    {
+        "id": "B",
+        "name": "Medio",
+        "modulo": "2"
     }
   ]
