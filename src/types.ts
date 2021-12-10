@@ -29,4 +29,3 @@ export type Estudante = {
   email: string;
   password: string;
 };
-
