@@ -19,12 +19,10 @@ export async function getAllTeacher(
         
         try {
 
-    const result = await connection("maryam_docentes")
-    // .select date_format(curdate(), '%m/%d/%Y')
+    const [result] = await connection.raw(`
+    SELECT id, name, email, DATE_FORMAT(data_nasc, "%d/%m/%Y") as data_nasc, turma_id FROM maryam_docentes`)
 
-    const teacher = result.map(newTeacher);
-
-    res.status(200).send(teacher);
+    res.status(200).send(result);
 
   } catch (error: any) {
     if(res.statusCode === 200){

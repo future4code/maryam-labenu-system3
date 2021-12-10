@@ -47,6 +47,23 @@ export const createTeacher = async (req: Request, res: Response) => {
     const date = formatDate();
     data_nasc = formatDefaultDate(data_nasc);
 
+        await connection("maryam_docentes").insert({
+            id: Date.now().toString(),
+            name,
+            email,
+            data_nasc,
+            turma_id
+          });
+          res.status(200).send("Teacher criado");
+        
+    } catch (error: any) {
+        if(res.statusCode === 200){
+            res.status(500).send("Um erro inesperado ocorreu")
+        }else{
+            res.send(error.message)
+        }
+    }
+
     if (formatDefaultDate(data_nasc).valueOf() < date.valueOf()) {
       res.statusCode = 422;
       throw new Error(`A deadline must be later than the current date.`);
@@ -69,6 +86,4 @@ export const createTeacher = async (req: Request, res: Response) => {
   }
 };
 
-function currentData(currentData: any) {
-  throw new Error("Function not implemented.");
-}
+
