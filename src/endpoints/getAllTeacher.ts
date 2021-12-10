@@ -1,16 +1,5 @@
 import { Request, Response } from "express";
 import { connection } from "../data/connection";
-import { Docente } from "../types";
-
-const newTeacher = (teacher: any): Docente => {
-    return {
-      id: teacher.id,
-      name: teacher.name,
-      email: teacher.email,
-      data_nasc: teacher.data_nasc,
-      turma_id: teacher.turma_id,
-    };
-  };
 
 export async function getAllTeacher(
     req: Request,
@@ -19,8 +8,15 @@ export async function getAllTeacher(
         
         try {
 
-    const [result] = await connection.raw(`
-    SELECT id, name, email, DATE_FORMAT(data_nasc, "%d/%m/%Y") as data_nasc, turma_id FROM maryam_docentes`)
+    const result = await connection("maryam_docenteEspecialidade")
+    .innerJoin("maryam_docentes", "maryam_docentes.id" ,"maryam_docenteEspecialidade.docente_id")
+    .innerJoin("maryam_turma", "maryam_turma.id", "maryam_docentes.turma_id")
+    .innerJoin("maryam_especialidade", "maryam_especialidade.id", "maryam_docenteEspecialidade.especialidade_id")
+    .select(["maryam_docentes.name","maryam_docentes.email", 
+    "maryam_docentes.data_nasc as DATE_FORMAT(data_nasc, '%d/%m/%Y')", 
+    "maryam_especialidade.name as maryam_docenteEspecialidade.docente_id",
+    "maryam_turma.name as maryam_docentes.turma_id", "maryam_turma.modulo"])
+    
 
     res.status(200).send(result);
 
