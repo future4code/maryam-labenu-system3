@@ -4,6 +4,8 @@ import turmas from "./turmas.json"
 import docentes from "./docentes.json"
 import especialidades from "./especialidades.json"
 import docenteEspecialidade from "./docenteEspecialidade.json"
+import hobbies from "./hobbies.json";
+
 
 const printError = (error: any) => {
   console.log(error.sqlMessage || error.message);
@@ -28,11 +30,10 @@ const createTables = () =>
       );
 
       CREATE TABLE IF NOT EXISTS maryam_estudantes_Hobbies (
-        id VARCHAR(255) PRIMARY KEY,
         student_id VARCHAR(255) NOT NULL,
         hobbie_id VARCHAR(255) NOT NULL,
         FOREIGN KEY (student_id) REFERENCES maryam_estudantes(id),
-        FOREIGN KEY (hobbie_id) REFERENCES maryam_Hobbie(id)
+        FOREIGN KEY (hobbie_id) REFERENCES maryam_Hobbies(id)
       );
 
       CREATE TABLE IF NOT EXISTS maryam_turma (
@@ -73,7 +74,7 @@ const insertEstudantes = () =>
   connection("maryam_estudantes")
     .insert(estudantes)
     .then(() => {
-      console.log("Usuários criados");
+      console.log("Estudantes criados");
     })
     .catch(printError);
 
@@ -112,7 +113,7 @@ const insertTurmas = () =>
 
  const insertHobbies = () =>
    connection("maryam_Hobbies")
-     .insert(docentes)
+     .insert(hobbies)
      .then(() => {
        console.log("Hobbies criadas");
      })
