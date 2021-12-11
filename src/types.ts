@@ -29,6 +29,8 @@ export type Estudante = {
   data_nasc: string;
   turma_id: string;
 };
+<<<<<<< HEAD
+=======
 
 
 
@@ -72,3 +74,4 @@ class EstudanteHobbie implements Pessoa, Hobbie {
     this.hobbie_name = hobbie_name;
   }
 }
+>>>>>>> 422431145b9fa048d05846e17f475b23b32e74ec
