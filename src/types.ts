@@ -29,15 +29,15 @@ export type Estudante = {
   data_nasc: string;
   turma_id: string;
 };
-<<<<<<< HEAD
-=======
 
-
-
-/////////testando interfaces//////////////////////////////////////////////
 export interface Hobbie {
   hobbie_id: string;
   hobbie_name: string;
+}
+
+export interface Especialist {
+  especialidade_id: string;
+  docente_id: string;
 }
 
 export interface Pessoa {
@@ -74,4 +74,30 @@ class EstudanteHobbie implements Pessoa, Hobbie {
     this.hobbie_name = hobbie_name;
   }
 }
->>>>>>> 422431145b9fa048d05846e17f475b23b32e74ec
+
+class DocenteEspecialista implements Pessoa, Especialist {
+  id: string;
+  name: string;
+  email: string;
+  data_nasc: string;
+  turma_id: string;
+  especialidade_id: string;
+  docente_id: string;
+  constructor(
+    id: string,
+    name: string,
+    email: string,
+    data_nasc: string,
+    turma_id: string,
+    especialidade_id: string,
+    docente_id: string
+  ) {
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.data_nasc = data_nasc;
+    this.turma_id = turma_id;
+    this.especialidade_id = especialidade_id;
+    this.docente_id = docente_id;
+  }
+}
