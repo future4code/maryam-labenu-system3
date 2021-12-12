@@ -1,18 +1,16 @@
 import { Request, Response } from "express";
-import { connection } from "../data/connection";
+import { connection } from "../../data/connection";
 
-export const createTeacher = async (
-  req: Request,
-   res: Response
-   ) => {
-    try {
+export const createStudent = async (req: Request, res: Response) => {
+  try {
+    const id = Date.now().toString();
 
     let { name, email, data_nasc, turma_id } = req.body;
 
-    if (!name || !email || !data_nasc || !turma_id) {
+    if (!id || !name || !email || !data_nasc || !turma_id) {
       res.statusCode = 422;
       throw new Error(
-        " 'name', 'email', 'data_nasc' e 'turma_id' são obrigatórios"
+        " 'id', 'name', 'email', 'data_nasc' e 'turma_id' são obrigatórios"
       );
     }
 
@@ -49,32 +47,28 @@ export const createTeacher = async (
     const date = formatDate();
     data_nasc = formatDefaultDate(data_nasc);
 
-
-   if (formatDefaultDate(data_nasc).valueOf() < date.valueOf()) {
-
+    if (formatDefaultDate(data_nasc).valueOf() < date.valueOf()) {
       res.statusCode = 422;
       throw new Error(`A deadline must be later than the current date.`);
     }
 
-    await connection("maryam_docentes").insert({
+    await connection("maryam_estudantes").insert({
       id: Date.now().toString(),
       name,
       email,
       data_nasc,
       turma_id,
     });
-
-    res.status(200).send("Teacher criado");
-
+    res.status(200).send("Estudante criado");
   } catch (error: any) {
-    
+    if (res.statusCode === 200) {
+      res.status(500).send("Ocorreu um erro inesperado!");
+    } else {
       res.send(error.message);
-    
+    }
   }
-}
+};
 
 function currentData(currentData: any) {
   throw new Error("Function not implemented.");
 }
-
-

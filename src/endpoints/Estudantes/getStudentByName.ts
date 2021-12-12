@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { connection } from "../data/connection";
-import { Estudante } from "../types";
+import { connection } from "../../data/connection";
+import { Estudante } from "../../types";
 
 export async function getStudentByName(
   req: Request,
