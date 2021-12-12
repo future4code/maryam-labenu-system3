@@ -8,9 +8,11 @@ import { getAllEspecialidade } from "./endpoints/getAllEspecialidade";
 import { getStudentByName } from "./endpoints/getStudentByName";
 import { getAllEspecialidadeDocente } from "./endpoints/getAllEspecialidadeDocente";
 import { getAllStudents } from "./endpoints/getAllStudents";
-import { getAllTeacher } from "./endpoints/getAllTeacher";
+import { getTeacherById } from "./endpoints/getTeacherById";
+import { updateTeacher } from "./endpoints/updateTeacher";
 import { updateStudentClass } from "./endpoints/updateStudentClass";
 import {updateTeacher} from "./endpoints/updateTeacher"
+
 
 
 app.get("/student/:name", getStudentByName);
@@ -18,12 +20,13 @@ app.post("/students", createStudent);
 app.put("/student/:id", updateStudentClass);
 app.post("/hobby", createStudentHobby);
 
-app.get("/teacher", getAllTeacher);
 app.post("/teacher", createTeacher);
+app.get("/teacher/:id", getTeacherById);
 app.put("/teacher/:id", updateTeacher);
 
 app.get("/especialidade", getAllEspecialidade);
 app.post("/especialidade", createEspecialidade);
+
 
 app.get("/especialidade", getAllEspecialidade)
 app.post("/especialidade", createEspecialidade)
