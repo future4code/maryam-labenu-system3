@@ -49,7 +49,9 @@ export const createTeacher = async (
     const date = formatDate();
     data_nasc = formatDefaultDate(data_nasc);
 
-    if (formatDefaultDate(data_nasc).valueOf() < date.valueOf()) {
+
+   if (formatDefaultDate(data_nasc).valueOf() < date.valueOf()) {
+
       res.statusCode = 422;
       throw new Error(`A deadline must be later than the current date.`);
     }
