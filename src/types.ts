@@ -10,16 +10,19 @@ export type Hobby = {
 
 export type Docente = {
   id: string;
-  name: string;
+  nome: string;
   email: string;
   data_nasc: string;
-  turma_id: string;
+  turma_id: number;
+  especialidades?: string[];
 };
 
 export type Turma = {
   id: string;
-  name: string;
-  modulo: string;
+  nome: string;
+  docentes?: string[];
+  estudantes?: string[];
+  modulo: number;
 };
 
 export type Estudante = {

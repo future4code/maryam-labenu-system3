@@ -1,16 +1,16 @@
 import { Request, Response } from "express";
-import { connection } from "../data/connection";
-import { Docente } from "../types";
+import { connection } from "../../data/connection";
+import { Docente } from "../../types";
 
-export async function getTeacherById(
+export async function getTeacherByName(
     req: Request,
     res: Response
     ): Promise<void> {
         
         try {
-        const id = req.params
+    const name = req.params
     const docente: Docente[] = await connection("maryam_docentes")
-    .where( id)
+    .where( name)
 
     const result = await connection.raw(
       `SELECT maryam_docentes.id,
