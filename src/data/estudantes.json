@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "name": "Joao",
+    "email": "joaorolabenu@gmail.com",
+    "data_nasc": "2009/10/20",
+    "turma_id": "2s4gf320-a21d-i4ds-2s9a-q981i3d01qa2"
+  },
+  {
+    "id": "2",
+    "name": "Rafaela",
+    "email": "rafalnb@gmail.com",
+    "data_nasc": "2008/01/10",
+    "turma_id": "1oa983fd- 2sr3-ao30-3d4e-34d62sd4e3o"
+  },
+  {
+    "id": "3",
+    "name": "Gabriel",
+    "email": "gabilnb@gmail.com",
+    "data_nasc": "2011/07/14",
+    "turma_id": "1oa983fd- 2sr3-ao30-3d4e-34d62sd4e3o"
+  }
+]

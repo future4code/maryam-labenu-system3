@@ -1,0 +1,16 @@
+[
+    {
+      "id": "1",
+      "name": "Ana Lúcia",
+      "email": "analucialabenu@gmail.com",
+      "data_nasc": "1967-10-20",
+      "turma_id": "2s4gf320-a21d-i4ds-2s9a-q981i3d01qa2"
+    },
+    {
+        "id": "2",
+        "name": "Lavínia",
+        "email": "lavinialnb@gmail.com",
+        "data_nasc": "1989-01-10",
+        "turma_id": "1oa983fd- 2sr3-ao30-3d4e-34d62sd4e3o"
+    }
+  ]
